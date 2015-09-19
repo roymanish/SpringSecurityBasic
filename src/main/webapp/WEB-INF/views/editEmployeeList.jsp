@@ -8,7 +8,7 @@
 <body>
  
 <h2>Employee Management Screen : Spring 3 hibernate integration example on www.howtodoinjava.com</h2>
- 
+ <a href="/security/logout">logout</a>
 <form:form method="post" action="add" commandName="employee">
  
     <table>

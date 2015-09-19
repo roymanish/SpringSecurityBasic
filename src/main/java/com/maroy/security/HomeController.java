@@ -36,19 +36,10 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("title", "Spring Security Hello World");
-		model.addAttribute("message", "This is welcome page!");
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+		return "redirect:/list";
 	}
 	
-	@RequestMapping(value="/login",method=RequestMethod.GET)
+	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String adminPage(Locale locale, Model model){
 		
 		model.addAttribute("employee", new EmployeeEntity());
@@ -60,15 +51,31 @@ public class HomeController {
 	public String addEmployee(@ModelAttribute(value="employee") EmployeeEntity employee, BindingResult result) 
 	{
 		employeeManager.addEmployee(employee);
-		return "redirect:/login";
+		return "redirect:/list";
 	}
 
 	@RequestMapping("/delete/{employeeId}")
 	public String deleteEmplyee(@PathVariable("employeeId") Integer employeeId)
 	{
 		employeeManager.deleteEmployee(employeeId);
-		return "redirect:/login";
+		return "redirect:/list";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model) {
+        return "login";
+    }
+ 
+    @RequestMapping(value = "/accessdenied", method = RequestMethod.GET)
+    public String loginerror(Model model) {
+        model.addAttribute("error", "true");
+        return "accessdenied";
+    }
+ 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(Model model) {
+        return "logout";
+    }
 	
 	public void setEmployeeManager(EmployeeManager employeeManager) {
 		this.employeeManager = employeeManager;
