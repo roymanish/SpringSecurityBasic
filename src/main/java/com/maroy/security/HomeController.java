@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.maroy.entity.EmployeeEntity;
+import com.maroy.entity.UserEntity;
 import com.maroy.service.EmployeeManager;
+import com.maroy.service.UserService;
 
 /**
  * Handles requests for the application home page.
@@ -28,6 +30,9 @@ public class HomeController {
 	
 	@Autowired
 	private EmployeeManager employeeManager;
+	
+	@Autowired
+	private UserService userService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -76,9 +81,27 @@ public class HomeController {
     public String logout(Model model) {
         return "logout";
     }
+    
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register(Model model) {
+    	model.addAttribute("user", new UserEntity());
+        return "register";
+    }
+    
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("user") UserEntity user, BindingResult result){
+    	
+    	userService.addUser(user);
+    	
+    	return "redirect:/login";
+    }
 	
 	public void setEmployeeManager(EmployeeManager employeeManager) {
 		this.employeeManager = employeeManager;
+	}
+	
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 	
 }

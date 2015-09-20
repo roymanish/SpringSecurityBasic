@@ -61,6 +61,8 @@
 	</bean>
 	<bean id="employeeManager" class="com.maroy.service.EmployeeManagerImpl">
 	</bean>
+	<bean id="userDao" class="com.maroy.dao.UserDaoImpl"></bean>
+	<bean id="userService" class="com.maroy.service.UserServiceImpl"></bean>
 
 	<tx:annotation-driven />
 	<bean id="transactionManager"

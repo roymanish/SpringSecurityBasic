@@ -13,5 +13,6 @@
         <property name="hibernate.connection.url">jdbc:hsqldb:mem://maroy</property>   
         <property name="hibernate.hbm2ddl.auto">create</property>   
         <mapping class="com.maroy.entity.EmployeeEntity"></mapping>
+        <mapping class="com.maroy.entity.UserEntity"></mapping>
     </session-factory>
 </hibernate-configuration>

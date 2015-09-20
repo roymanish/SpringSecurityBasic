@@ -22,6 +22,12 @@
                 <tr>
                     <td colspan='2'><input name="submit" type="submit">&nbsp;<input name="reset" type="reset"></td>
                 </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan='2'><a href="${pageContext.request.contextPath}/register">Register Here</a></td>
+                </tr>
             </table>
         </form>
     </body>
