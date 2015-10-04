@@ -8,12 +8,12 @@
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/login" access="permitAll" requires-channel="https"/>
 		<security:intercept-url pattern="/register" access="permitAll" requires-channel="https"/>
-		<security:intercept-url pattern="/addUser" access="permitAll" requires-channel="https"/>
+		<security:intercept-url pattern="/addUser" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
 		<security:intercept-url pattern="/logout" access="authenticated" requires-channel="https"/>
 		<security:intercept-url pattern="/accessdenied" access="permitAll" requires-channel="https"/>
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" requires-channel="any"/>
 		<security:form-login login-page="/login" default-target-url="/list" authentication-failure-url="/accessdenied"/>
-		
+		<security:custom-filter ref="corsFilter" position="FIRST"/>
 	</security:http>
 	
 	<!-- XML authentication example 
@@ -30,5 +30,7 @@
 	<security:authentication-manager>
 	  <security:authentication-provider user-service-ref="userService"/>
 	</security:authentication-manager>
+	
+	<bean id="corsFilter" class="com.maroy.filters.CorsFilter"></bean>
 
 </beans>

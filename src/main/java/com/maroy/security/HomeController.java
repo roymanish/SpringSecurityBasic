@@ -1,5 +1,6 @@
 package com.maroy.security;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -12,8 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.maroy.entity.EmployeeEntity;
 import com.maroy.entity.UserEntity;
@@ -70,7 +73,7 @@ public class HomeController {
     public String login(Model model) {
         return "login";
     }
- 
+	
     @RequestMapping(value = "/accessdenied", method = RequestMethod.GET)
     public String loginerror(Model model) {
         model.addAttribute("error", "true");
